@@ -1,0 +1,311 @@
+{
+    "boot_upgrade": {
+        "firmware": [
+            {
+                "acq_win": 100,
+                "boot_auth": [
+                    5
+                ],
+                "bootloader_keys": [
+                    {
+                        "key": "../keys/oem_state.json",
+                        "kid": 5
+                    }
+                ],
+                "clock_flags": 578,
+                "id": 0,
+                "launch": 1,
+                "monotonic": 0,
+                "protect_flags": 1,
+                "resources": [
+                    {
+                        "address": 405274624,
+                        "size": 524288,
+                        "type": "SCRATCH"
+                    },
+                    {
+                        "address": 270336000,
+                        "size": 65536,
+                        "type": "FLASH_PC1_SPM"
+                    },
+                    {
+                        "address": 135135232,
+                        "size": 65536,
+                        "type": "SRAM_SPM_PRIV"
+                    },
+                    {
+                        "address": 135184384,
+                        "size": 16384,
+                        "type": "SRAM_DAP"
+                    },
+                    {
+                        "address": 270323712,
+                        "size": 12288,
+                        "type": "STATUS_PARTITION"
+                    }
+                ],
+                "smif_id": 0,
+                "upgrade": false,
+                "upgrade_mode": "swap",
+                "wdt_enable": true,
+                "wdt_timeout": 4000
+            },
+            {
+                "acq_win": 100,
+                "boot_auth": [
+                    6
+                ],
+                "boot_keys": [
+                    {
+                        "key": "../keys/TFM_S_KEY.json",
+                        "kid": 6
+                    },
+                    {
+                        "key": "../keys/TFM_NS_KEY.json",
+                        "kid": 8
+                    }
+                ],
+                "encrypt": false,
+                "encrypt_key": "../keys/image-aes-128.key",
+                "encrypt_key_id": 1,
+                "encrypt_peer": "../keys/dev_pub_key.pem",
+                "id": 1,
+                "monotonic": 0,
+                "multi_image": 1,
+                "resources": [
+                    {
+                        "address": 268435456,
+                        "size": 327680,
+                        "type": "BOOT"
+                    },
+                    {
+                        "address": 269991936,
+                        "size": 327680,
+                        "type": "UPGRADE"
+                    }
+                ],
+                "rollback_counter": 0,
+                "set_img_ok": true,
+                "smif_id": 0,
+                "upgrade": true,
+                "upgrade_auth": [
+                    6
+                ],
+                "upgrade_keys": [
+                    {
+                        "key": "../keys/TFM_S_KEY.json",
+                        "kid": 6
+                    }
+                ],
+                "version": "0.1",
+                "wdt_enable": true,
+                "wdt_timeout": 5000
+            },
+            {
+                "boot_auth": [
+                    8
+                ],
+                "boot_keys": [
+                    {
+                        "key": "../keys/TFM_S_KEY.json",
+                        "kid": 6
+                    },
+                    {
+                        "key": "../keys/TFM_NS_KEY.json",
+                        "kid": 8
+                    }
+                ],
+                "encrypt": false,
+                "encrypt_key": "../keys/image-aes-128.key",
+                "encrypt_key_id": 1,
+                "encrypt_peer": "../keys/dev_pub_key.pem",
+                "id": 16,
+                "monotonic": 8,
+                "multi_image": 2,
+                "resources": [
+                    {
+                        "address": 268763136,
+                        "size": 1228800,
+                        "type": "BOOT"
+                    },
+                    {
+                        "address": 402736128,
+                        "size": 1228800,
+                        "type": "UPGRADE"
+                    }
+                ],
+                "rollback_counter": 0,
+                "smif_id": 1,
+                "smif_sector_size": 262144,
+                "upgrade": true,
+                "upgrade_auth": [
+                    8
+                ],
+                "upgrade_keys": [
+                    {
+                        "key": "../keys/TFM_NS_KEY.json",
+                        "kid": 8
+                    }
+                ],
+                "version": "0.1"
+            }
+        ],
+        "reprogram": [
+            {
+                "size": 65536,
+                "start": 270336000
+            }
+        ],
+        "reprovision": {
+            "boot_loader": true,
+            "keys_and_policies": true
+        },
+        "title": "upgrade_policy"
+    },
+    "configurator": {
+        "certificate": {
+            "country": "",
+            "encoding": "pem",
+            "issuer": "",
+            "organization": "",
+            "output_path": "",
+            "private_key": "",
+            "state": "",
+            "subject_name": ""
+        },
+        "target": "cy8ckit-064s0s2-4343w"
+    },
+    "custom_data_sections": [
+        "tfm"
+    ],
+    "cy_bootloader": {
+        "mode": "debug"
+    },
+    "debug": {
+        "m0p": {
+            "control": "firmware",
+            "key": 5,
+            "permission": "enabled"
+        },
+        "m4": {
+            "control": "firmware",
+            "key": 5,
+            "permission": "allowed"
+        },
+        "rma": {
+            "destroy_flash": [
+                {
+                    "size": 4096,
+                    "start": 270319616
+                },
+                {
+                    "size": 1163264,
+                    "start": 268763136
+                }
+            ],
+            "destroy_fuses": [
+                {
+                    "size": 136,
+                    "start": 888
+                },
+                {
+                    "size": 104,
+                    "start": 648
+                }
+            ],
+            "key": 5,
+            "permission": "allowed"
+        },
+        "system": {
+            "control": "firmware",
+            "flashr": true,
+            "flashw": true,
+            "key": 5,
+            "permission": "enabled"
+        }
+    },
+    "policy": {
+        "platform": "psoc64",
+        "version": 1
+    },
+    "pre_build": {
+        "cy_auth": "../packets/cy_auth_2m_s0_sample.jwt",
+        "device_private_key": "../keys/dev_priv_key.json",
+        "group_private_key": "../keys/grp_priv_key.json",
+        "hsm_private_key": "../keys/hsm_state.json",
+        "hsm_public_key": "../keys/hsm_state.json",
+        "oem_private_key": "../keys/oem_state.json",
+        "oem_public_key": "../keys/oem_state.json",
+        "provision_device_private_key": false,
+        "provision_group_private_key": false
+    },
+    "provisioning": {
+        "chain_of_trust": [
+        ],
+        "packet_dir": "../packets"
+    },
+    "tfm": {
+        "attestation_data": {
+            "attestation_profile_definition": "PSA_IOT_PROFILE_1",
+            "hw_version": "060456527282910010",
+            "implementation_id": [
+                170,
+                170,
+                170,
+                170,
+                170,
+                170,
+                170,
+                170,
+                187,
+                187,
+                187,
+                187,
+                187,
+                187,
+                187,
+                187,
+                204,
+                204,
+                204,
+                204,
+                204,
+                204,
+                204,
+                204,
+                221,
+                221,
+                221,
+                221,
+                221,
+                221,
+                221,
+                221
+            ],
+            "verification_service_url": "www.trustedfirmware.org"
+        },
+        "debug_port": {
+            "enabled": true,
+            "uart_base": 1080360960
+        },
+        "its": {
+            "max_asset_size": 2048,
+            "num_assets": 8,
+            "offset": 1818624,
+            "size": 16384
+        },
+        "nv_counters": {
+            "offset": 1866752,
+            "size": 1024
+        },
+        "ps": {
+            "max_asset_size": 2008,
+            "num_assets": 10,
+            "offset": 1835008,
+            "size": 24576
+        }
+    },
+    "wounding": {
+    }
+}
+
